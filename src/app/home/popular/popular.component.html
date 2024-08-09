@@ -1,0 +1,32 @@
+<section class="popular pt-4">
+  <div class="my-container">
+      <h2 class="mb-4 mx-3">Popular</h2>
+      <div class="text-center sprinner" *ngIf="isLoading">
+        <div class="spinner-border text-light" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        </div>
+
+      <owl-carousel-o [options]="customOptions">
+        <ng-container  *ngFor="let movie of MoviesList">
+            <ng-container *ngIf="movie.genre_ids.includes(14)||movie.genre_ids.includes(16)">
+                <ng-template carouselSlide >
+                    <div class="slider-container">
+                        <div class="movie-img">
+                            <a [routerLink]="'Movie-details/' +movie.id+'/'+movie.title">
+                                <img src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}" alt="">
+                            </a>
+                        </div>
+                        <div class="simple-details mt-2 text-white text-center">
+                            <a [routerLink]="'Movie-details/' +movie.id+'/'+movie.name">
+                                <p>{{movie.title}}</p>
+                            </a>
+                        </div>
+                    </div>
+                </ng-template> 
+            </ng-container>
+        </ng-container>
+    </owl-carousel-o>
+    
+  </div>
+</section>
